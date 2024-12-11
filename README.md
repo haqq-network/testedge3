@@ -1,19 +1,127 @@
-# testedge3
+# Haqq Network - TestEdge3
 
-## Endpoints
 
-- `peer1.testedge3.haqq.network:26656` (sentry-1)
-- `peer2.testedge3.haqq.network:26666` (sentry-2)
-- `peer3.testedge3.haqq.network:26676` (sentry-3)
+## Overview
+The current version of the HAQQ TestEdge3 is [`v1.8.1`](https://github.com/haqq-network/haqq/releases/tag/v1.8.1). To bootstrap a testedge3 node, use State Sync and synchronize a snapshot from our official seed nodes.
 
-- `grpc.cosmos.testedge3.haqq.network` -> 9090 (pruned-1)
-- `rest.cosmos.testedge3.haqq.network` -> 1317 (pruned-1)
-- `rpc-ws.eth.testedge3.haqq.network` -> 8546 (pruned-1)
-- `rpc.eth.testedge3.haqq.network` -> 8545 (pruned-1)
-- `rpc.tm.testedge3.haqq.network` -> 26657 (pruned-1)
 
-- `grpc.cosmos.archive.testedge3.haqq.network` -> 9090 (full-1)
-- `rest.cosmos.archive.testedge3.haqq.network` -> 1317 (full-1)
-- `rpc-ws.eth.archive.testedge3.haqq.network` -> 8546 (full-1)
-- `rpc.eth.archive.testedge3.haqq.network` -> 8545 (full-1)
-- `rpc.tm.archive.testedge3.haqq.network` -> 26657 (full-1)
+## Quickstart
+_*Battle tested on [Ubuntu LTS 22.04](https://spinupwp.com/doc/what-does-lts-mean-ubuntu/#:~:text=The%20abbreviation%20stands%20for%20Long,extended%20period%20over%20regular%20releases)*_
+
+**You can do the same yourself**
+
+Install packages:
+```sh
+sudo apt-get update && \
+sudo apt-get install curl git make gcc liblz4-tool build-essential git-lfs jq aria2 -y
+```
+
+**Preresquisites for compile from source**
+- `make` & `gcc` 
+- `Go 1.21+` ([How to install Go](https://www.digitalocean.com/community/tutorials/how-to-install-go-on-ubuntu-20-04))
+
+**Easy GO compiler and HAQQ node installation**
+
+```sh
+curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/install_go.sh && \
+curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/install_haqq.sh && \
+sh install_go.sh && \ 
+source $HOME/.bash_profile && \
+sh install_haqq.sh
+```
+
+**Do the same manually:**
+
+Download latest binary for your arch: </br>
+https://github.com/haqq-network/haqq/releases/tag/v1.8.1
+
+Build from source:
+```sh
+cd $HOME
+git clone -b v1.8.1 https://github.com/haqq-network/haqq
+cd haqq
+make install
+```
+
+Verify binary version:
+```sh
+haqq@haqq-node:~# haqqd -v
+haqqd version "1.8.1" 32131e743799979c7317c2a394e008e74f06ba7e
+```
+
+**Initialize and start HAQQ**
+
+```sh
+export CUSTOM_MONIKER="testedge3_seed_node"
+export HAQQD_DIR="$HOME/.haqqd"
+
+haqqd config chain-id haqq_53211-3 && \
+haqqd init $CUSTOM_MONIKER --chain-id haqq_53211-3
+
+# Prepare genesis file for mainet(haqq_11235-1)
+curl -L https://raw.githubusercontent.com/haqq-network/testedge3/master/genesis.json -o $HAQQD_DIR/config/genesis.json
+
+# Configure State sync
+curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/state_sync.sh && \
+chmod +x state_sync.sh && \
+./state_sync.sh $HAQQD_DIR
+
+# Start Haqq
+haqqd start
+```
+
+## Cosmovisor setup
+
+1. Install cosmovisor bin
+```sh
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+```
+
+2. Create cosmovisor folders
+```sh
+mkdir -p $HAQQD_DIR/cosmovisor/genesis/bin && \
+mkdir -p $HAQQD_DIR/cosmovisor/upgrades
+```
+
+3. Copy node binary into Cosmovisor folder
+```sh
+cp $HOME/go/bin/haqqd $HAQQD_DIR/cosmovisor/genesis/bin
+```
+
+4. Create haqqd cosmovisor service
+```sh
+nano /etc/systemd/system/haqqd.service
+```
+
+```sh
+[Unit]
+Description="haqqd cosmovisor"
+After=network-online.target
+
+[Service]
+User=<your user>
+ExecStart=/home/<your user>/go/bin/cosmovisor run start
+Restart=always
+RestartSec=3
+LimitNOFILE=4096
+Environment="DAEMON_NAME=haqqd"
+Environment="DAEMON_HOME=$HAQQD_DIR"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=true"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=false"
+
+[Install]
+WantedBy=multi-user.target
+```
+
+5. Enable and start service
+
+```sh
+sudo systemctl enable haqqd.service && \
+sudo systemctl start haqqd.service
+```
+
+6. Check logs
+```sh
+sudo journalctl --system -fu haqqd
+```
