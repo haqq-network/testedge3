@@ -55,7 +55,8 @@ echo "###############################################"
 echo "Setup state-sync for the Haqq node..."
 echo "###############################################"
 curl -OsL https://raw.githubusercontent.com/haqq-network/testedge3/master/scripts/state_sync.sh
-sh state_sync.sh $HAQQD_DIR
+chmod +x state_sync.sh
+./state_sync.sh $HAQQD_DIR
 rm state_sync.sh
 
 # Haqq node start
