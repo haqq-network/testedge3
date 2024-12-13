@@ -11,26 +11,26 @@ fi
 CUSTOM_MONIKER="$1"
 HAQQD_DIR="$HOME/.haqqd"
 
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 echo "Updating and installing required packages..."
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 
 # Update and install required packages
 sudo apt-get update -qq
 sudo apt-get install -qq curl git make gcc liblz4-tool build-essential jq -y
 
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 echo "Downloading installation scripts..."
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 
 # Download installation scripts
-curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/install_go.sh
-curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/install_haqq.sh
-curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/init_start.sh
+curl -OsL https://raw.githubusercontent.com/haqq-network/testedge3/master/install_go.sh
+curl -OsL https://raw.githubusercontent.com/haqq-network/testedge3/master/install_haqq.sh
+curl -OsL https://raw.githubusercontent.com/haqq-network/testedge3/master/init_start.sh
 
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 echo "Installing Go language..."
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 
 # Install Go language
 sh install_go.sh
@@ -39,16 +39,16 @@ echo "Sourcing the Go environment variables..."
 # Source the Go environment variables
 . $HOME/.bash_profile
 
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 echo "Installing the HAQQ node..."
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 
 # Install the Haqq node
 sh install_haqq.sh
 
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 echo "Initializing and starting the Haqq node..."
-echo "\n\n\n###############################################\n\n\n"
+echo "###############################################"
 
 # Initialize and start the Haqq node
 sh init_start.sh $CUSTOM_MONIKER $HAQQD_DIR

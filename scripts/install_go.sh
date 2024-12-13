@@ -9,7 +9,7 @@ cd $HOME
 GO_VERSION="1.22.10"
 
 # Download the Go binary tarball for the specified version
-wget "https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz"
+curl -OsL "https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz"
 
 # Remove any previous installation of Go
 sudo rm -rf /usr/local/go
