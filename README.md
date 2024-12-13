@@ -42,7 +42,7 @@ sudo apt-get install curl git make gcc liblz4-tool build-essential git-lfs jq ar
 ## Go installation
 
 ```sh
-curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/install_go.sh && \
+curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/scripts/install_go.sh && \
 sh install_go.sh && \ 
 source $HOME/.bash_profile
 ```
@@ -87,7 +87,7 @@ curl -L https://raw.githubusercontent.com/haqq-network/testedge3/master/genesis.
 *_Node can be bootstrapped using [snapshot](https://pub-d737aae8c5d74559afafae6b5db96c99.r2.dev/index.html) or state-sync._*
 ### State-sync
 ```sh
-curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/state_sync.sh && \
+curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/scripts/state_sync.sh && \
 chmod +x state_sync.sh && \
 ./state_sync.sh $HAQQD_DIR
 ```

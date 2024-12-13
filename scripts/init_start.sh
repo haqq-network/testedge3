@@ -19,10 +19,3 @@ haqqd init $CUSTOM_MONIKER --chain-id haqq_53211-3
 # Download the genesis file for mainnet(haqq_11235-1)
 curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/genesis.json && \
 mv genesis.json $HAQQD_DIR/config/genesis.json
-
-# Configure State sync
-curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/state_sync.sh && \
-sh state_sync.sh $HAQQD_DIR
-
-# Start Haqq
-haqqd start
