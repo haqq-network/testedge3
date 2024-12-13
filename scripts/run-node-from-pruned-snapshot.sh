@@ -50,7 +50,10 @@ curl -OsL https://raw.githubusercontent.com/haqq-network/testedge3/master/script
 sh init_start.sh $CUSTOM_MONIKER $HAQQD_DIR
 rm init_start.sh
 
-# Setup state-sync for the Haqq node
+# Configure seeds
+sed -i 's/seeds = ".*"/seeds = "5fa53a57f11ab3f1979df6cdd572a2cc6c519f5a@peer1.testedge3.haqq.network:26656,3baf1dedfebb985974c2c15d246aa6c821da1cf6@peer2.testedge3.haqq.network:26666,64dcbb5cf8b8b9f7c950bfa1a3eee339e98c94ca@peer3.testedge3.haqq.network:26676"/' $HAQQD_DIR/config/config.toml
+
+# Download archive snapshot for the Haqq node
 echo "###############################################"
 echo "Downloading pruned snapshot for the Haqq node..."
 echo "###############################################"
