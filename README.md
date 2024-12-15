@@ -19,7 +19,7 @@ _*All methods can be used, depending on preference or requirement.*_
 - [Run archive node from snapshot](#snapshot)
 ### Manual method
 - [Binary installation](#binary-installation)
-  - [Download pre-compiled binary for required arch](https://github.com/haqq-network/haqq/releases/tag/v1.8.1)
+  - [Download pre-compiled binary](#download-pre-compiled-binary)
   - [Build from source](#build-binary-from-source)
 - [Initialize node](#initialize-node)
 - [Download genesis](#download-genesis)
@@ -50,8 +50,8 @@ source $HOME/.bash_profile
 ## Binary installation
 *_Binary can be downloaded from [haqq official repository](https://github.com/haqq-network/haqq/releases) or builded from source._*
 
-### Download pre-compiled binary for required arch
-- Download latest binary for your arch: </br>
+### Download pre-compiled binary
+- Download latest binary for required arch: </br>
 https://github.com/haqq-network/haqq/releases/tag/v1.8.1
 
 ### Build binary from source
