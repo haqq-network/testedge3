@@ -55,7 +55,7 @@ sed -i 's/pruning = ".*"/pruning = "custom"/' $HAQQD_DIR/config/app.toml
 sed -i 's/pruning-keep-recent = ".*"/pruning-keep-recent = "100"/' $HAQQD_DIR/config/app.toml
 sed -i 's/pruning-keep-every = ".*"/pruning-keep-every = "0"/' $HAQQD_DIR/config/app.toml
 sed -i 's/pruning-interval = ".*"/pruning-interval = "10"/' $HAQQD_DIR/config/app.toml
-sed -i 's/min-retain-blocks = ".*"/min-retain-blocks = "100"/' $HAQQD_DIR/config/app.toml
+sed -i 's/min-retain-blocks = .*/min-retain-blocks = 100/' $HAQQD_DIR/config/app.toml
 
 # Configure config.toml
 sed -i 's/seeds = ".*"/seeds = "5fa53a57f11ab3f1979df6cdd572a2cc6c519f5a@peer1.testedge3.haqq.network:26656,3baf1dedfebb985974c2c15d246aa6c821da1cf6@peer2.testedge3.haqq.network:26666,64dcbb5cf8b8b9f7c950bfa1a3eee339e98c94ca@peer3.testedge3.haqq.network:26676"/' $HAQQD_DIR/config/config.toml
