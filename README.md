@@ -48,7 +48,7 @@ source $HOME/.bash_profile
 ```
 
 ## Binary installation
-*_Binary can be downloaded from [haqq official repository](https://github.com/haqq-network/haqq/releases) or builded from source._*
+*_Binary can be downloaded from [haqq official repository](https://github.com/haqq-network/haqq/releases) or built from source._*
 
 ### Download pre-compiled binary
 - Download latest binary for required arch: </br>
