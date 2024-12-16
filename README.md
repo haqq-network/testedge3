@@ -14,9 +14,9 @@ _*Battle tested on [Ubuntu LTS 22.04](https://spinupwp.com/doc/what-does-lts-mea
 ## Haqq TestEdge3 node installation guide
 _*All methods can be used, depending on preference or requirement.*_
 ### Easy go script methods
-- [Run pruned node from state-sync](#snapshot)
-- [Run pruned node from snapshot](#snapshot)
-- [Run archive node from snapshot](#snapshot)
+- [Run pruned node from state-sync](scripts#run-pruned-node-from-state-sync)
+- [Run pruned node from snapshot](scripts#run-node-from-pruned-snapshot)
+- [Run archive node from snapshot](scripts#run-node-from-archive-snapshot)
 ### Manual method
 - [Binary installation](#binary-installation)
   - [Download pre-compiled binary](#download-pre-compiled-binary)

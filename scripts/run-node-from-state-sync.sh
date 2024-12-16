@@ -50,6 +50,16 @@ curl -OsL https://raw.githubusercontent.com/haqq-network/testedge3/master/script
 sh init_start.sh $CUSTOM_MONIKER $HAQQD_DIR
 rm init_start.sh
 
+# Configure app.toml
+sed -i 's/pruning = ".*"/pruning = "custom"/' $HAQQD_DIR/config/app.toml
+sed -i 's/pruning-keep-recent = ".*"/pruning-keep-recent = "100"/' $HAQQD_DIR/config/app.toml
+sed -i 's/pruning-keep-every = ".*"/pruning-keep-every = "0"/' $HAQQD_DIR/config/app.toml
+sed -i 's/pruning-interval = ".*"/pruning-interval = "10"/' $HAQQD_DIR/config/app.toml
+sed -i 's/min-retain-blocks = .*/min-retain-blocks = 100/' $HAQQD_DIR/config/app.toml
+
+# Configure config.toml
+sed -i 's/indexer = ".*"/indexer = "null"/' $HAQQD_DIR/config/config.toml
+
 # Setup state-sync for the Haqq node
 echo "###############################################"
 echo "Setup state-sync for the Haqq node..."
