@@ -6,10 +6,28 @@ The current version of the HAQQ TestEdge3 is [`v1.8.1`](https://github.com/haqq-
 _*Battle tested on [Ubuntu LTS 22.04](https://spinupwp.com/doc/what-does-lts-mean-ubuntu/#:~:text=The%20abbreviation%20stands%20for%20Long,extended%20period%20over%20regular%20releases)*_
 
 ## Prerequisites
+*_These prerequisites are necessary to ensure a smooth setup and successful operation of the node installation. Please review and complete the following steps before proceeding._*
+
+*_**Note**: If these steps have been already completed, skip them._*
 - [Required Packages are installed](#packages-installation)
 - [`Go 1.22+` is installed](#go-installation)
   - [Manual Installation](https://www.digitalocean.com/community/tutorials/how-to-install-go-on-ubuntu-20-04)
   - [Installation via Script](#go-installation)
+
+### Packages installation
+
+```sh
+sudo apt-get update && \
+sudo apt-get install curl git make gcc liblz4-tool build-essential git-lfs jq aria2 -y
+```
+
+### Go installation
+
+```sh
+curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/scripts/install_go.sh && \
+sh install_go.sh && \ 
+source $HOME/.bash_profile
+```
 
 ## Haqq TestEdge3 node installation guide
 _*All methods can be used, depending on preference or requirement.*_
@@ -31,21 +49,6 @@ _*All methods can be used, depending on preference or requirement.*_
 - [Launch node](#launch-node)
   - [Run binary](#run-haqq-bin)
   - [Cosmovisor](#cosmovisor-setup)
-
-## Packages installation
-
-```sh
-sudo apt-get update && \
-sudo apt-get install curl git make gcc liblz4-tool build-essential git-lfs jq aria2 -y
-```
-
-## Go installation
-
-```sh
-curl -OL https://raw.githubusercontent.com/haqq-network/testedge3/master/scripts/install_go.sh && \
-sh install_go.sh && \ 
-source $HOME/.bash_profile
-```
 
 ## Binary installation
 *_Binary can be downloaded from [haqq official repository](https://github.com/haqq-network/haqq/releases) or built from source._*
